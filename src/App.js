@@ -22,7 +22,7 @@ function App() {
   }, []) //useEffect only going to run once, to get artWorks. Need empty array or will execute infinite loop
   return (
     <div className="App">
-      <h1>Sophia's Page</h1>
+      <h1>Art Works of the Art Institute of Chicago</h1>
       {loading && <p>Loading, please wait.</p>}
 
       {
@@ -35,8 +35,13 @@ function App() {
           .map(artWork => {
             return (
               <div key={artWork.id}>
-                <h1>{artWork.artist_title}</h1>
                 <img src={`https://www.artic.edu/iiif/2/${artWork.image_id}/full/843,/0/default.jpg`} alt={artWork.title}></img>
+                <div className="infoPlaque">
+                  <h3>{artWork.artist_title}</h3>
+                  <p>{artWork.title}</p>
+                  <p>{artWork.medium_display}</p>
+                  <p>{artWork.date_display}</p>
+                </div>
               </div>
             ) //used string interpolation to rebuild URL to provide images
           })
